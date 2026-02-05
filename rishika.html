@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Rishika! 🎂💕</title>
+  <meta name="description" content="A special birthday celebration for Rishika!" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎂</text></svg>" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --background: hsl(20 50% 98%);
+      --foreground: hsl(340 30% 20%);
+      --card: hsl(0 0% 100%);
+      --primary: hsl(340 75% 60%);
+      --primary-foreground: hsl(0 0% 100%);
+      --muted-foreground: hsl(340 20% 45%);
+      --gold: hsl(42 90% 55%);
+      --coral: hsl(15 85% 65%);
+      --rose-light: hsl(340 60% 95%);
+      --rose-medium: hsl(340 70% 75%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      overflow-x: hidden;
+    }
+
+    .font-display {
+      font-family: 'Pacifico', cursive;
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, var(--primary), var(--coral), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Confetti */
+    .confetti-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 50;
+    }
+
+    .confetti {
+      position: absolute;
+      animation: confetti-fall linear infinite;
+    }
+
+    @keyframes confetti-fall {
+      0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0.7; }
+    }
+
+    /* Floating Hearts */
+    .hearts-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 10;
+    }
+
+    .floating-heart {
+      position: absolute;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 5rem 1rem;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, var(--rose-light), var(--background), var(--background));
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 24rem;
+      height: 24rem;
+      background: hsla(340, 75%, 60%, 0.2);
+      border-radius: 50%;
+      filter: blur(48px);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 20;
+      text-align: center;
+      max-width: 56rem;
+      margin: 0 auto;
+    }
+
+    .sparkles {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .sparkle {
+      font-size: 2rem;
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { filter: drop-shadow(0 0 10px var(--gold)); }
+      50% { filter: drop-shadow(0 0 20px var(--gold)); }
+    }
+
+    .main-title {
+      font-size: clamp(3rem, 8vw, 6rem);
+      margin-bottom: 1.5rem;
+    }
+
+    .name-title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      color: var(--primary);
+      animation: heart-beat 1s ease-in-out infinite;
+    }
+
+    @keyframes heart-beat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.05); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.08); }
+    }
+
+    .subtitle {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      color: var(--muted-foreground);
+      max-width: 40rem;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Birthday Cake */
+    .cake-container {
+      margin: 3rem 0;
+      animation: bounce-slow 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce-slow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .cake-sparkle {
+      position: absolute;
+      font-size: 1.5rem;
+      animation: sparkle 1.5s ease-in-out infinite;
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(-3deg); }
+      50% { transform: rotate(3deg); }
+    }
+
+    .flame { animation: wiggle 0.5s ease-in-out infinite; }
+
+    /* Scroll Indicator */
+    .scroll-indicator {
+      margin-top: 4rem;
+      animation: bounce-slow 2s ease-in-out infinite;
+    }
+
+    .scroll-mouse {
+      width: 2rem;
+      height: 3rem;
+      border: 2px solid var(--primary);
+      border-radius: 9999px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      padding-top: 0.5rem;
+    }
+
+    .scroll-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      background: var(--primary);
+      border-radius: 50%;
+      animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+
+    /* Wishes Section */
+    .wishes-section {
+      padding: 5rem 1rem;
+      background: linear-gradient(to bottom, var(--background), hsla(340, 60%, 95%, 0.3));
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--muted-foreground);
+      margin-bottom: 3rem;
+      font-size: 1.1rem;
+    }
+
+    .wishes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    .wish-card {
+      background: linear-gradient(180deg, var(--card), hsl(340 60% 98%));
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 20px hsla(340, 30%, 50%, 0.1);
+      border: 1px solid var(--rose-light);
+      transition: all 0.3s ease;
+    }
+
+    .wish-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 30px hsla(340, 30%, 50%, 0.2);
+    }
+
+    .wish-emoji {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      animation: bounce-slow 2s ease-in-out infinite;
+    }
+
+    .wish-title {
+      font-size: 1.25rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .wish-message {
+      color: var(--muted-foreground);
+    }
+
+    /* Message Section */
+    .message-section {
+      padding: 5rem 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .message-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, hsla(340, 60%, 95%, 0.3), var(--background), hsla(340, 60%, 95%, 0.2));
+    }
+
+    .message-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(48px);
+    }
+
+    .message-blob-1 {
+      top: 2.5rem;
+      left: 2.5rem;
+      width: 8rem;
+      height: 8rem;
+      background: hsla(340, 75%, 60%, 0.1);
+    }
+
+    .message-blob-2 {
+      bottom: 2.5rem;
+      right: 2.5rem;
+      width: 10rem;
+      height: 10rem;
+      background: hsla(42, 90%, 55%, 0.1);
+    }
+
+    .message-card {
+      max-width: 48rem;
+      margin: 0 auto;
+      background: var(--card);
+      border-radius: 1.5rem;
+      padding: 2rem 3rem;
+      box-shadow: 0 0 60px hsla(340, 75%, 60%, 0.4);
+      border: 1px solid var(--rose-light);
+      position: relative;
+      z-index: 10;
+    }
+
+    .heart-icon {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .heart-icon svg {
+      width: 3rem;
+      height: 3rem;
+      fill: var(--primary);
+      animation: heart-beat 1s ease-in-out infinite;
+    }
+
+    .message-title {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 2rem;
+    }
+
+    .message-content {
+      text-align: center;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--foreground);
+    }
+
+    .message-content p {
+      margin-bottom: 1.5rem;
+    }
+
+    .message-signature {
+      font-size: 1.5rem;
+      color: var(--primary);
+      padding-top: 1rem;
+    }
+
+    .hearts-row {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+
+    .hearts-row svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      fill: var(--primary);
+    }
+
+    /* Footer */
+    footer {
+      padding: 3rem 1rem;
+      background: linear-gradient(to top, var(--rose-light), var(--background));
+      text-align: center;
+    }
+
+    .footer-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+
+    .footer-title {
+      font-size: 1.75rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .footer-made {
+      color: var(--muted-foreground);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .footer-made svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      fill: var(--primary);
+      animation: heart-beat 1s ease-in-out infinite;
+    }
+
+    .footer-copy {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Confetti Container -->
+  <div class="confetti-container" id="confetti"></div>
+
+  <!-- Floating Hearts -->
+  <div class="hearts-container" id="hearts"></div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-glow"></div>
+    
+    <div class="hero-content">
+      <div class="sparkles">
+        <span class="sparkle">✨</span>
+        <span class="sparkle" style="animation-delay: 0.3s;">✨</span>
+        <span class="sparkle" style="animation-delay: 0.6s;">✨</span>
+      </div>
+      
+      <h1 class="font-display main-title text-gradient">Happy Birthday</h1>
+      <h2 class="font-display name-title">Rishika! 🎂</h2>
+      
+      <!-- Birthday Cake -->
+      <div class="cake-container" style="position: relative; display: inline-block;">
+        <span class="cake-sparkle" style="top: -16px; left: 16px;">✨</span>
+        <span class="cake-sparkle" style="top: -8px; right: 32px; animation-delay: 0.5s;">✨</span>
+        <span class="cake-sparkle" style="top: 32px; right: -8px; animation-delay: 1s;">✨</span>
+        <svg viewBox="0 0 100 120" width="192" height="224" fill="none">
+          <!-- Flames -->
+          <ellipse cx="30" cy="15" rx="4" ry="8" fill="var(--gold)" class="flame"/>
+          <ellipse cx="50" cy="10" rx="5" ry="10" fill="var(--gold)" class="flame" style="animation-delay: 0.2s;"/>
+          <ellipse cx="70" cy="15" rx="4" ry="8" fill="var(--gold)" class="flame" style="animation-delay: 0.4s;"/>
+          <!-- Wicks -->
+          <rect x="29" y="20" width="2" height="15" fill="var(--foreground)"/>
+          <rect x="49" y="18" width="2" height="17" fill="var(--foreground)"/>
+          <rect x="69" y="20" width="2" height="15" fill="var(--foreground)"/>
+          <!-- Candles -->
+          <rect x="26" y="35" width="8" height="20" rx="2" fill="var(--coral)"/>
+          <rect x="46" y="35" width="8" height="20" rx="2" fill="var(--primary)"/>
+          <rect x="66" y="35" width="8" height="20" rx="2" fill="var(--coral)"/>
+          <!-- Top Layer -->
+          <path d="M15 55 Q15 50 20 50 L80 50 Q85 50 85 55 L85 70 Q85 75 80 75 L20 75 Q15 75 15 70 Z" fill="var(--rose-medium)"/>
+          <!-- Middle Layer -->
+          <path d="M10 75 Q10 70 15 70 L85 70 Q90 70 90 75 L90 95 Q90 100 85 100 L15 100 Q10 100 10 95 Z" fill="var(--primary)"/>
+          <!-- Bottom Layer -->
+          <path d="M5 100 Q5 95 10 95 L90 95 Q95 95 95 100 L95 115 Q95 120 90 120 L10 120 Q5 120 5 115 Z" fill="var(--rose-medium)"/>
+          <!-- Frosting -->
+          <circle cx="25" cy="75" r="5" fill="var(--card)"/>
+          <circle cx="40" cy="77" r="4" fill="var(--card)"/>
+          <circle cx="55" cy="74" r="6" fill="var(--card)"/>
+          <circle cx="70" cy="76" r="5" fill="var(--card)"/>
+          <!-- Decorations -->
+          <circle cx="20" cy="108" r="3" fill="var(--gold)"/>
+          <circle cx="35" cy="110" r="2" fill="var(--gold)"/>
+          <circle cx="50" cy="107" r="3" fill="var(--gold)"/>
+          <circle cx="65" cy="110" r="2" fill="var(--gold)"/>
+          <circle cx="80" cy="108" r="3" fill="var(--gold)"/>
+        </svg>
+      </div>
+      
+      <p class="subtitle">
+        Today is all about celebrating the most amazing person! 
+        Wishing you a day filled with love, laughter, and all your favorite things! 💕
+      </p>
+      
+      <div class="scroll-indicator">
+        <div class="scroll-mouse">
+          <div class="scroll-dot"></div>
+        </div>
+        <p style="font-size: 0.875rem; color: var(--muted-foreground); margin-top: 0.5rem;">Scroll for more wishes</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wishes Section -->
+  <section class="wishes-section">
+    <h2 class="font-display section-title">Birthday Wishes</h2>
+    <p class="section-subtitle">Just a few reasons why you're absolutely amazing ✨</p>
+    
+    <div class="wishes-grid">
+      <div class="wish-card">
+        <div class="wish-emoji">🌟</div>
+        <h3 class="font-display wish-title">Shine Bright</h3>
+        <p class="wish-message">May your year ahead be as radiant and beautiful as your smile!</p>
+      </div>
+      <div class="wish-card">
+        <div class="wish-emoji">💖</div>
+        <h3 class="font-display wish-title">Love & Joy</h3>
+        <p class="wish-message">Sending you infinite hugs, kisses, and all the love in the world!</p>
+      </div>
+      <div class="wish-card">
+        <div class="wish-emoji">🎁</div>
+        <h3 class="font-display wish-title">Dreams Come True</h3>
+        <p class="wish-message">May all your wishes and dreams manifest into reality this year!</p>
+      </div>
+      <div class="wish-card">
+        <div class="wish-emoji">🌈</div>
+        <h3 class="font-display wish-title">Adventures Await</h3>
+        <p class="wish-message">Here's to new adventures, beautiful memories, and endless happiness!</p>
+      </div>
+      <div class="wish-card">
+        <div class="wish-emoji">🎈</div>
+        <h3 class="font-display wish-title">Celebrate You</h3>
+        <p class="wish-message">Today we celebrate the amazing, wonderful, incredible YOU!</p>
+      </div>
+      <div class="wish-card">
+        <div class="wish-emoji">✨</div>
+        <h3 class="font-display wish-title">Magic Moments</h3>
+        <p class="wish-message">May your life be filled with magical moments and beautiful surprises!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Message Section -->
+  <section class="message-section">
+    <div class="message-bg"></div>
+    <div class="message-blob message-blob-1"></div>
+    <div class="message-blob message-blob-2"></div>
+    
+    <div class="message-card">
+      <div class="heart-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      </div>
+      
+      <h2 class="font-display message-title">A Special Message For You</h2>
+      
+      <div class="message-content">
+        <p>Dear Rishika,</p>
+        <p>On this special day, I want you to know just how much you mean to me. Your smile lights up my world, your laughter is my favorite sound, and every moment with you is a treasure.</p>
+        <p>You make everything better just by being you. Your kindness, your warmth, and your beautiful soul inspire me every single day.</p>
+        <p>I hope this birthday brings you as much joy as you bring to everyone around you. You deserve all the happiness in the world!</p>
+        <p class="font-display message-signature">Happy Birthday, my love! 🎂💕</p>
+      </div>
+      
+      <div class="hearts-row">
+        <svg viewBox="0 0 24 24" style="opacity: 0.4;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        <svg viewBox="0 0 24 24" style="opacity: 0.55;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        <svg viewBox="0 0 24 24" style="opacity: 0.7;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        <svg viewBox="0 0 24 24" style="opacity: 0.85;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        <svg viewBox="0 0 24 24" style="opacity: 1;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-icons">
+      <span style="animation: wiggle 0.5s ease-in-out infinite;">🎉</span>
+      <span style="animation: bounce-slow 2s ease-in-out infinite;">🎂</span>
+      <span style="animation: wiggle 0.5s ease-in-out infinite; animation-delay: 0.2s;">🎁</span>
+      <span style="animation: wiggle 0.5s ease-in-out infinite; animation-delay: 0.4s;">🎉</span>
+    </div>
+    
+    <p class="font-display footer-title">🎉 Have an Amazing Birthday! 🎉</p>
+    
+    <p class="footer-made">
+      Made with 
+      <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      just for you
+    </p>
+    
+    <p class="footer-copy">© 2025 - Your Special Day 🎂</p>
+  </footer>
+
+  <script>
+    // Generate Confetti
+    const confettiContainer = document.getElementById('confetti');
+    const colors = ['hsl(340, 75%, 60%)', 'hsl(42, 90%, 55%)', 'hsl(15, 85%, 65%)', 'hsl(340, 70%, 75%)', 'hsl(0, 0%, 100%)'];
+    
+    for (let i = 0; i < 50; i++) {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      const size = 8 + Math.random() * 12;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const shape = Math.random() > 0.3 ? 'circle' : 'square';
+      
+      confetti.style.left = Math.random() * 100 + '%';
+      confetti.style.animationDelay = Math.random() * 5 + 's';
+      confetti.style.animationDuration = (3 + Math.random() * 4) + 's';
+      confetti.style.width = size + 'px';
+      confetti.style.height = size + 'px';
+      confetti.style.backgroundColor = color;
+      confetti.style.borderRadius = shape === 'circle' ? '50%' : '2px';
+      
+      confettiContainer.appendChild(confetti);
+    }
+
+    // Generate Floating Hearts
+    const heartsContainer = document.getElementById('hearts');
+    
+    for (let i = 0; i < 15; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'floating-heart';
+      heart.innerHTML = '<svg viewBox="0 0 24 24" fill="' + colors[0] + '" width="' + (16 + Math.random() * 24) + '" height="' + (16 + Math.random() * 24) + '"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>';
+      heart.style.left = Math.random() * 100 + '%';
+      heart.style.bottom = (10 + Math.random() * 30) + '%';
+      heart.style.animationDelay = Math.random() * 3 + 's';
+      heart.style.opacity = 0.3 + Math.random() * 0.4;
+      
+      heartsContainer.appendChild(heart);
+    }
+  </script>
+</body>
+</html>
